@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  coordinator:
+    image: "trinodb/trino:366"
+    ports:
+      - "8080:8080"
+    container_name: "coordinator"
+    volumes:
+      - ./config/config.properties.coordinator:/etc/trino/config.properties.coordinator:ro
+      - ./config/node.properties:/etc/trino/node.properties:ro
+      - ./config/jvm.config:/etc/trino/jvm.config:ro
+      - ./config/http-event-listener.properties:/etc/trino/http-event-listener.properties:ro
+      - ./config/mysql.properties:/etc/trino/catalog/mysql.properties:ro
+    depends_on:
+      - mariadb
+  mariadb:
+    image: "mariadb:10.5"
+    container_name: "mariadb"
+    ports:
+      - "8081:8081"
+    environment:
+      - MYSQL_ROOT_PASSWORD=tt123456
+    volumes:
+      - ./mariadb_data:/var/lib/mysql

@@ -1,0 +1,13 @@
+coordinator=true
+node-scheduler.include-coordinator=true
+http-server.http.port=8080
+query.max-memory=2GB
+# query.max-memory-per-node=1GB
+# query.max-total-memory-per-node=1GB
+query.max-stage-count=200
+task.writer-count=4
+# discovery-server.enabled=true
+discovery.uri=http://trino-1:8080
+jmx.rmiregistry.port=9080
+jmx.rmiserver.port=9081
+event-listener.config-files=/etc/trino/http-event-listener.properties
